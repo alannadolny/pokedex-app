@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex_app/consts.dart';
 import 'package:pokedex_app/widgets/pokemon_list/pokemon_list.dart';
 
 class App extends StatelessWidget {
@@ -6,8 +7,15 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: PokemonList(),
+    return MaterialApp(
+      theme: ThemeData().copyWith(
+        textTheme: ThemeData().textTheme.copyWith(
+              bodyMedium: const TextStyle(
+                color: DEFAULT_COLOR,
+              ),
+            ),
+      ),
+      home: const PokemonList(),
     );
   }
 }

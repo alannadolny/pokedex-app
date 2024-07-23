@@ -3,10 +3,9 @@ import 'package:http/http.dart' as http;
 import 'package:pokedex_app/models/pokemon.dart';
 
 class PokeApi {
-
   static Future<List<Pokemon>> fetchPokemons() async {
     final response =
-    await http.get(Uri.parse('https://pokeapi.co/api/v2/pokemon'));
+        await http.get(Uri.parse('https://pokeapi.co/api/v2/pokemon'));
 
     if (response.statusCode == 200) {
       return List.of(json.decode(response.body)['results'])
@@ -26,7 +25,7 @@ class PokeApi {
 
     throw Exception('Failed to fetch pokemon');
   }
-  
+
   static Future<List<Pokemon>> fetchPokemonsWithDetails() async {
     final List<Pokemon> pokemonsList = await fetchPokemons();
     List<Future<Pokemon>> pokemonsWithDetails = pokemonsList

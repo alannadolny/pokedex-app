@@ -4,7 +4,9 @@ import 'package:pokedex_app/services/poke_api.dart';
 import 'package:pokedex_app/widgets/pokemon_list/pokemon_row.dart';
 
 class PokemonList extends StatefulWidget {
-  const PokemonList({super.key});
+  const PokemonList({
+    super.key,
+  });
 
   @override
   State<PokemonList> createState() {
