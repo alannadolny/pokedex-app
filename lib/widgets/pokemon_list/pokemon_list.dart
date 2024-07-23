@@ -1,8 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:pokedex_app/models/pokemon.dart';
-import 'package:http/http.dart' as http;
+import 'package:pokedex_app/services/poke_api.dart';
+import 'package:pokedex_app/widgets/pokemon_list/pokemon_row.dart';
 
 class PokemonList extends StatefulWidget {
   const PokemonList({super.key});
@@ -16,23 +15,10 @@ class PokemonList extends StatefulWidget {
 class _PokemonListState extends State<PokemonList> {
   late Future<List<Pokemon>> pokemons;
 
-  Future<List<Pokemon>> fetchPokemons() async {
-    final response =
-        await http.get(Uri.parse('https://pokeapi.co/api/v2/pokemon'));
-
-    if (response.statusCode == 200) {
-      return List.of(json.decode(response.body)['results'])
-          .map((value) => Pokemon.fromJson(value))
-          .toList();
-    }
-
-    throw Exception('Failed to fetch pokemons');
-  }
-
   @override
   void initState() {
     super.initState();
-    pokemons = fetchPokemons();
+    pokemons = PokeApi.fetchPokemonsWithDetails();
   }
 
   @override
@@ -42,6 +28,7 @@ class _PokemonListState extends State<PokemonList> {
         padding: const EdgeInsets.only(
           top: 20,
           left: 20,
+          right: 20,
         ),
         child: Column(
           children: [
@@ -56,8 +43,11 @@ class _PokemonListState extends State<PokemonList> {
               child: FutureBuilder(
                 future: pokemons,
                 builder: (ctx, snapshot) => ListView.builder(
-                  itemCount: snapshot.data?.length,
-                  itemBuilder: (ctx, idx) => Text(snapshot.data![idx].name),
+                  itemCount: snapshot.data!.length ~/ 2,
+                  itemBuilder: (ctx, idx) => PokemonRow(
+                    pokemonLeft: snapshot.data![2 * idx],
+                    pokemonRight: snapshot.data![2 * idx + 1],
+                  ),
                 ),
               ),
             ),
