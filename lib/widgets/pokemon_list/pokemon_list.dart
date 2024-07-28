@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pokedex_app/models/pokemon.dart';
 import 'package:pokedex_app/services/poke_api.dart';
 import 'package:pokedex_app/widgets/pokemon_list/pokemon_row.dart';
+import 'package:pokedex_app/widgets/list_header.dart';
 
 class PokemonList extends StatefulWidget {
   const PokemonList({
@@ -21,10 +22,20 @@ class _PokemonListState extends State<PokemonList> {
     if (snapshot.hasData) {
       return ListView.builder(
         itemCount: snapshot.data!.length ~/ 2,
-        itemBuilder: (ctx, idx) => PokemonRow(
-          pokemonLeft: snapshot.data![2 * idx],
-          pokemonRight: snapshot.data![2 * idx + 1],
-        ),
+        itemBuilder: (ctx, idx) => idx == 0
+            ? Column(
+                children: [
+                  const ListHeader(),
+                  PokemonRow(
+                    pokemonLeft: snapshot.data![2 * idx],
+                    pokemonRight: snapshot.data![2 * idx + 1],
+                  ),
+                ],
+              )
+            : PokemonRow(
+                pokemonLeft: snapshot.data![2 * idx],
+                pokemonRight: snapshot.data![2 * idx + 1],
+              ),
       );
     }
 
@@ -48,13 +59,6 @@ class _PokemonListState extends State<PokemonList> {
         ),
         child: Column(
           children: [
-            const Text(
-              'Pokedex',
-              style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
-            ),
-            const Text(
-              'Search for a pokemon by name or using its National Pokedex number.',
-            ),
             Expanded(
               child: FutureBuilder(
                 future: pokemons,
