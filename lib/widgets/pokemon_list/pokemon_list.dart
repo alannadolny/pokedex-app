@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_app/models/pokemon.dart';
 import 'package:pokedex_app/services/poke_api.dart';
+import 'package:pokedex_app/widgets/loading_indicator.dart';
 import 'package:pokedex_app/widgets/pokemon_list/pokemon_row.dart';
 import 'package:pokedex_app/widgets/list_header.dart';
 
@@ -39,7 +40,7 @@ class _PokemonListState extends State<PokemonList> {
       );
     }
 
-    return const LinearProgressIndicator();
+    return const LoadingIndicator();
   }
 
   @override
