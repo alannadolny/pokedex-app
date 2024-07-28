@@ -17,6 +17,20 @@ class PokemonList extends StatefulWidget {
 class _PokemonListState extends State<PokemonList> {
   late Future<List<Pokemon>> pokemons;
 
+  Widget buildList(ctx, snapshot) {
+    if (snapshot.hasData) {
+      return ListView.builder(
+        itemCount: snapshot.data!.length ~/ 2,
+        itemBuilder: (ctx, idx) => PokemonRow(
+          pokemonLeft: snapshot.data![2 * idx],
+          pokemonRight: snapshot.data![2 * idx + 1],
+        ),
+      );
+    }
+
+    return const LinearProgressIndicator();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -44,13 +58,7 @@ class _PokemonListState extends State<PokemonList> {
             Expanded(
               child: FutureBuilder(
                 future: pokemons,
-                builder: (ctx, snapshot) => ListView.builder(
-                  itemCount: snapshot.data!.length ~/ 2,
-                  itemBuilder: (ctx, idx) => PokemonRow(
-                    pokemonLeft: snapshot.data![2 * idx],
-                    pokemonRight: snapshot.data![2 * idx + 1],
-                  ),
-                ),
+                builder: buildList,
               ),
             ),
           ],

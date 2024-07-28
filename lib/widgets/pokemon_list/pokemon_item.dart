@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:palette_generator/palette_generator.dart';
 import 'package:pokedex_app/models/pokemon.dart';
 
 class PokemonItem extends StatefulWidget {
@@ -17,57 +16,46 @@ class PokemonItem extends StatefulWidget {
 }
 
 class _PokemonItemState extends State<PokemonItem> {
-  late Future<PaletteGenerator> pokemonColorPalette;
-
-  @override
-  void initState() {
-    super.initState();
-    pokemonColorPalette = widget.pokemon.colorPalette;
-  }
-
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: pokemonColorPalette,
-      builder: (ctx, snapshot) => Container(
-        margin: const EdgeInsets.only(bottom: 15),
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(
-            Radius.circular(20),
+    return Container(
+      margin: const EdgeInsets.only(bottom: 15),
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(
+          Radius.circular(20),
+        ),
+        color: widget.pokemon.colorPalette?.dominantColor?.color,
+      ),
+      width: 190,
+      height: 280,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          const SizedBox(
+            height: 10,
           ),
-          color: snapshot.data!.dominantColor!.color,
-        ),
-        width: 190,
-        height: 280,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            const SizedBox(
-              height: 10,
-            ),
-            Image.network(
-              widget.pokemon.officialArtworkImage!,
-              height: 150,
-            ),
-            Column(
-              children: [
-                Text(
-                  widget.pokemon.displayName,
-                  style:
-                  const TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-                ),
-                Text(
-                  widget.pokemon.displayId,
-                  style:
-                  const TextStyle(fontWeight: FontWeight.w400, fontSize: 20),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-              ],
-            )
-          ],
-        ),
+          Image.network(
+            widget.pokemon.officialArtworkImage!,
+            height: 150,
+          ),
+          Column(
+            children: [
+              Text(
+                widget.pokemon.displayName,
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+              ),
+              Text(
+                widget.pokemon.displayId,
+                style:
+                    const TextStyle(fontWeight: FontWeight.w400, fontSize: 20),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+            ],
+          )
+        ],
       ),
     );
   }

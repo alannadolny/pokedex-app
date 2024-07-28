@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:palette_generator/palette_generator.dart';
 
 class Pokemon {
@@ -6,6 +5,7 @@ class Pokemon {
   String name;
   String? url;
   String? officialArtworkImage;
+  PaletteGenerator? colorPalette;
 
   Pokemon({
     required this.name,
@@ -20,15 +20,6 @@ class Pokemon {
 
   String get displayName {
     return name[0].toUpperCase() + name.substring(1).toLowerCase();
-  }
-
-  Future<PaletteGenerator> get colorPalette async {
-    final PaletteGenerator paletteGenerator =
-        await PaletteGenerator.fromImageProvider(
-      Image.network(officialArtworkImage!).image,
-    );
-
-    return paletteGenerator;
   }
 
   factory Pokemon.fromJson(Map<String, dynamic> json) {
