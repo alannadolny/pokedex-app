@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_app/consts.dart';
-import 'package:pokedex_app/widgets/pokemon_list/pokemon_list.dart';
+import 'package:pokedex_app/routes.dart';
 
 class App extends StatelessWidget {
-  const App({super.key});
+  const App({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       theme: ThemeData().copyWith(
         textTheme: ThemeData().textTheme.copyWith(
               bodyMedium: const TextStyle(
@@ -15,7 +17,7 @@ class App extends StatelessWidget {
               ),
             ),
       ),
-      home: const PokemonList(),
+      routerConfig: router,
     );
   }
 }
