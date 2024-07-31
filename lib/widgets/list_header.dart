@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_app/widgets/search_field.dart';
+import 'package:pokedex_app/widgets/filters_button.dart';
 
 class ListHeader extends StatelessWidget {
   const ListHeader({
@@ -25,7 +26,22 @@ class ListHeader extends StatelessWidget {
             'Search for a pokemon by name or using its National Pokédex number.',
             style: TextStyle(fontSize: 20),
           ),
-          SearchField(),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: SearchField(
+                  placeholder: "Name or number",
+                ),
+              ),
+              FiltersButton(),
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          )
         ],
       ),
     );

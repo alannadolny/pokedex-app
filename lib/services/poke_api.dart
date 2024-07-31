@@ -1,13 +1,12 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:palette_generator/palette_generator.dart';
 import 'package:pokedex_app/models/pokemon.dart';
 import 'package:pokedex_app/services/color_palette_api.dart';
 
 class PokeApi {
   static Future<List<Pokemon>> fetchPokemons() async {
     final response =
-        await http.get(Uri.parse('https://pokeapi.co/api/v2/pokemon'));
+        await http.get(Uri.parse('https://pokeapi.co/api/v2/pokemon/'));
 
     if (response.statusCode == 200) {
       return List.of(json.decode(response.body)['results'])
