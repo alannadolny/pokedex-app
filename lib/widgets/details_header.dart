@@ -32,7 +32,7 @@ class DetailsHeader extends StatelessWidget {
               name,
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 25,
+                fontSize: 35,
               ),
             ),
             Text(

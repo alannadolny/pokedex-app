@@ -20,18 +20,37 @@ class PokemonDetails extends ConsumerWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(
           vertical: 35,
-          horizontal: 15,
+          horizontal: 35,
         ),
         child: pokemon.isLoading
-        ? const LoadingIndicator()
-        : Column(
-          children: [
-            DetailsHeader(
-              name: pokemon.value!.displayName,
-              id: pokemon.value!.displayId,
-            ),
-          ],
-        ),
+            ? const LoadingIndicator()
+            : Column(
+                children: [
+                  DetailsHeader(
+                    name: pokemon.value!.displayName,
+                    id: pokemon.value!.displayId,
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(
+                      top: 20,
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 50,
+                      horizontal: 20,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(20),
+                      ),
+                      color: pokemon.value!.colorPalette!.dominantColor!.color,
+                    ),
+                    child: Image.network(
+                      pokemon.value!.officialArtworkImage!,
+                      height: 350,
+                    ),
+                  ),
+                ],
+              ),
       ),
     );
   }
