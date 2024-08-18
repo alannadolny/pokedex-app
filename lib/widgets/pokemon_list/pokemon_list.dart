@@ -4,7 +4,7 @@ import 'package:pokedex_app/models/pokemon.dart';
 import 'package:pokedex_app/provider.dart';
 import 'package:pokedex_app/widgets/loading_indicator.dart';
 import 'package:pokedex_app/widgets/pokemon_list/pokemon_row.dart';
-import 'package:pokedex_app/widgets/list_header.dart';
+import 'package:pokedex_app/widgets/pokemon_list/list_header.dart';
 
 class PokemonList extends ConsumerStatefulWidget {
   const PokemonList({

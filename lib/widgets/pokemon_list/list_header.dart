@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex_app/widgets/search_field.dart';
-import 'package:pokedex_app/widgets/filters_button.dart';
+import 'package:pokedex_app/widgets/pokemon_list/search_field.dart';
+import 'package:pokedex_app/widgets/pokemon_list/filters_button.dart';
 
 class ListHeader extends StatelessWidget {
   const ListHeader({

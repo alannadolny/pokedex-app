@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex_app/models/pokemon.dart';
 import 'package:pokedex_app/provider.dart';
-import 'package:pokedex_app/widgets/details_header.dart';
+import 'package:pokedex_app/widgets/pokemon_details/details_header.dart';
 import 'package:pokedex_app/widgets/loading_indicator.dart';
 
 class PokemonDetails extends ConsumerWidget {
