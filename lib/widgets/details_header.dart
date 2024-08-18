@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class DetailsHeader extends StatelessWidget {
+  final String name;
+  final String id;
+
   const DetailsHeader({
+    required this.name,
+    required this.id,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-
     void onBackArrowTap() {
       context.goNamed(
         'pokemonList',
@@ -22,18 +26,18 @@ class DetailsHeader extends StatelessWidget {
           onTap: onBackArrowTap,
           child: const Icon(Icons.arrow_back),
         ),
-        const Column(
+        Column(
           children: [
             Text(
-              'Venusaur',
-              style: TextStyle(
+              name,
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 25,
               ),
             ),
             Text(
-              '003',
-              style: TextStyle(
+              id,
+              style: const TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: 20,
               ),
