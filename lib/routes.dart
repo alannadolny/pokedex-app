@@ -13,7 +13,9 @@ final router = GoRouter(
     GoRoute(
       name: 'pokemonDetails',
       path: '/:id',
-      builder: (context, state) => const PokemonDetails(),
+      builder: (context, state) => PokemonDetails(
+        id: state.pathParameters['id'],
+      ),
     ),
   ],
 );

@@ -20,7 +20,7 @@ class _PokemonItemState extends State<PokemonItem> {
   void onPokemonTap() {
     context.goNamed(
       'pokemonDetails',
-      pathParameters: {'id': 'uniqueId'},
+      pathParameters: {'id': "${widget.pokemon.id}" },
     );
   }
 
