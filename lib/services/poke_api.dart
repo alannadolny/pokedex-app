@@ -17,7 +17,8 @@ class PokeApi {
     throw Exception('Failed to fetch pokemons');
   }
 
-  static Future<Pokemon> fetchPokemonDetails(String url, bool fetchColorPalette) async {
+  static Future<Pokemon> fetchPokemonDetails(
+      String url, bool fetchColorPalette) async {
     final response = await http.get(Uri.parse(url));
 
     if (response.statusCode != 200) {
@@ -30,7 +31,8 @@ class PokeApi {
       return pokemon;
     }
 
-    pokemon.colorPalette = await ColorPaletteApi.getColorPalette(pokemon.officialArtworkImage as String);
+    pokemon.colorPalette = await ColorPaletteApi.getColorPalette(
+        pokemon.officialArtworkImage as String);
     return pokemon;
   }
 
@@ -41,5 +43,47 @@ class PokeApi {
         .toList();
 
     return Future.wait(pokemonsWithDetails);
+  }
+
+  static List<String> getPokemonsFromEvolutionChain(
+      Map<String, dynamic> evolutionPath) {
+    List<String> pokemonsName = [];
+    dynamic currentDepth = evolutionPath['chain'];
+    String? currentPokemon = currentDepth['species']['name'];
+    while (currentPokemon != null) {
+      try {
+        pokemonsName.add(currentPokemon);
+        currentDepth = currentDepth?['evolves_to']?[0];
+        currentPokemon = currentDepth?['species']?['name'];
+      } catch (e) {
+        currentPokemon = null;
+      }
+    }
+    return pokemonsName;
+  }
+
+  static Future<List<Pokemon>> fetchEvolutionPath(String pokemonId) async {
+    final response = await http
+        .get(Uri.parse('https://pokeapi.co/api/v2/pokemon-species/$pokemonId'));
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to fetch pokemon species');
+    }
+
+    String urlToEvolutionPath =
+        json.decode(response.body)?['evolution_chain']?['url'];
+
+    final evolutionPath = await http.get(Uri.parse(urlToEvolutionPath));
+
+    if (evolutionPath.statusCode != 200) {
+      throw Exception('Failed to fetch evolution chain');
+    }
+
+    List<String> pokemons =
+        getPokemonsFromEvolutionChain(json.decode(evolutionPath.body));
+    return Future.wait(pokemons
+        .map((pokemon) async => await fetchPokemonDetails(
+            "https://pokeapi.co/api/v2/pokemon/$pokemon", true))
+        .toList());
   }
 }

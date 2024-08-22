@@ -20,7 +20,6 @@ final pokemonProvider = AutoDisposeFutureProvider<List<Pokemon>>.internal(
 );
 
 typedef PokemonRef = AutoDisposeFutureProviderRef<List<Pokemon>>;
-
 String _$pokemonByIdHash() => r'976b5e66840eed47256ee5d21137a6cbb3be3b0e';
 
 /// Copied from Dart SDK
@@ -168,6 +167,136 @@ class _PokemonByIdProviderElement
 
   @override
   String get id => (origin as PokemonByIdProvider).id;
+}
+
+String _$evolutionChainHash() => r'008a287bfd6144311b1f33f47ca5849c56e7c106';
+
+/// See also [evolutionChain].
+@ProviderFor(evolutionChain)
+const evolutionChainProvider = EvolutionChainFamily();
+
+/// See also [evolutionChain].
+class EvolutionChainFamily extends Family<AsyncValue<EvolutionChain?>> {
+  /// See also [evolutionChain].
+  const EvolutionChainFamily();
+
+  /// See also [evolutionChain].
+  EvolutionChainProvider call(
+    String pokemonId,
+  ) {
+    return EvolutionChainProvider(
+      pokemonId,
+    );
+  }
+
+  @override
+  EvolutionChainProvider getProviderOverride(
+    covariant EvolutionChainProvider provider,
+  ) {
+    return call(
+      provider.pokemonId,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'evolutionChainProvider';
+}
+
+/// See also [evolutionChain].
+class EvolutionChainProvider
+    extends AutoDisposeFutureProvider<EvolutionChain?> {
+  /// See also [evolutionChain].
+  EvolutionChainProvider(
+    String pokemonId,
+  ) : this._internal(
+          (ref) => evolutionChain(
+            ref as EvolutionChainRef,
+            pokemonId,
+          ),
+          from: evolutionChainProvider,
+          name: r'evolutionChainProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$evolutionChainHash,
+          dependencies: EvolutionChainFamily._dependencies,
+          allTransitiveDependencies:
+              EvolutionChainFamily._allTransitiveDependencies,
+          pokemonId: pokemonId,
+        );
+
+  EvolutionChainProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.pokemonId,
+  }) : super.internal();
+
+  final String pokemonId;
+
+  @override
+  Override overrideWith(
+    FutureOr<EvolutionChain?> Function(EvolutionChainRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: EvolutionChainProvider._internal(
+        (ref) => create(ref as EvolutionChainRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        pokemonId: pokemonId,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<EvolutionChain?> createElement() {
+    return _EvolutionChainProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is EvolutionChainProvider && other.pokemonId == pokemonId;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, pokemonId.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin EvolutionChainRef on AutoDisposeFutureProviderRef<EvolutionChain?> {
+  /// The parameter `pokemonId` of this provider.
+  String get pokemonId;
+}
+
+class _EvolutionChainProviderElement
+    extends AutoDisposeFutureProviderElement<EvolutionChain?>
+    with EvolutionChainRef {
+  _EvolutionChainProviderElement(super.provider);
+
+  @override
+  String get pokemonId => (origin as EvolutionChainProvider).pokemonId;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

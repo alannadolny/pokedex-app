@@ -2,21 +2,40 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex_app/models/pokemon.dart';
 import 'package:pokedex_app/provider.dart';
+import 'package:pokedex_app/utils.dart';
 import 'package:pokedex_app/widgets/pokemon_details/details_header.dart';
 import 'package:pokedex_app/widgets/loading_indicator.dart';
 import 'package:pokedex_app/widgets/pokemon_details/options_list.dart';
 
-class PokemonDetails extends ConsumerWidget {
-  final String? id;
 
-  const PokemonDetails({
+class PokemonDetails extends ConsumerStatefulWidget {
+  final String? id;
+  int currentOption = 0;
+
+  PokemonDetails({
     this.id,
     super.key,
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final AsyncValue<Pokemon?> pokemon = ref.watch(pokemonByIdProvider(id!));
+  ConsumerState<PokemonDetails> createState() {
+    return _PokemonDetailsState();
+  }
+}
+
+class _PokemonDetailsState extends ConsumerState<PokemonDetails> {
+  void Function() changeActiveOption(int optionIdx) {
+    return () {
+      setState(() {
+        widget.currentOption = optionIdx;
+      });
+    };
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final AsyncValue<Pokemon?> pokemon =
+        ref.watch(pokemonByIdProvider(widget.id!));
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(
@@ -50,7 +69,11 @@ class PokemonDetails extends ConsumerWidget {
                       height: 350,
                     ),
                   ),
-                  OptionsList(),
+                  OptionsList(
+                    activeOption: widget.currentOption,
+                    onOptionClick: changeActiveOption,
+                  ),
+                  getPokemonDetailsOptions(widget.id)[widget.currentOption].widget,
                 ],
               ),
       ),
