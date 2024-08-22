@@ -11,19 +11,21 @@ class DetailsHeader extends StatelessWidget {
     super.key,
   });
 
-  @override
-  Widget build(BuildContext context) {
-    void onBackArrowTap() {
+  void Function() onBackArrowTap(BuildContext context) {
+    return () {
       context.goNamed(
         'pokemonList',
       );
-    }
+    };
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         GestureDetector(
-          onTap: onBackArrowTap,
+          onTap: onBackArrowTap(context),
           child: const Icon(Icons.arrow_back),
         ),
         Column(

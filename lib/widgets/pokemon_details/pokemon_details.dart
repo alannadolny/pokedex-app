@@ -4,6 +4,7 @@ import 'package:pokedex_app/models/pokemon.dart';
 import 'package:pokedex_app/provider.dart';
 import 'package:pokedex_app/widgets/pokemon_details/details_header.dart';
 import 'package:pokedex_app/widgets/loading_indicator.dart';
+import 'package:pokedex_app/widgets/pokemon_details/options_list.dart';
 
 class PokemonDetails extends ConsumerWidget {
   final String? id;
@@ -49,6 +50,7 @@ class PokemonDetails extends ConsumerWidget {
                       height: 350,
                     ),
                   ),
+                  OptionsList(),
                 ],
               ),
       ),
