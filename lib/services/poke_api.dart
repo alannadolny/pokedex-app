@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:pokedex_app/models/evolution_chain.dart';
 import 'package:pokedex_app/models/pokemon.dart';
 import 'package:pokedex_app/services/color_palette_api.dart';
 
@@ -62,13 +63,21 @@ class PokeApi {
     return pokemonsName;
   }
 
-  static Future<List<Pokemon>> fetchEvolutionPath(String pokemonId) async {
+  static Future<EvolutionChain> fetchEvolutionPath(String pokemonId) async {
+    EvolutionChain evolutionChain = EvolutionChain(
+      mainPokemonId: pokemonId,
+      pokemons: [],
+      evolutionText: null,
+    );
     final response = await http
         .get(Uri.parse('https://pokeapi.co/api/v2/pokemon-species/$pokemonId'));
 
     if (response.statusCode != 200) {
       throw Exception('Failed to fetch pokemon species');
     }
+
+    evolutionChain.evolutionText =
+        json.decode(response.body)['flavor_text_entries']?[0]?['flavor_text'];
 
     String urlToEvolutionPath =
         json.decode(response.body)?['evolution_chain']?['url'];
@@ -81,9 +90,10 @@ class PokeApi {
 
     List<String> pokemons =
         getPokemonsFromEvolutionChain(json.decode(evolutionPath.body));
-    return Future.wait(pokemons
+    evolutionChain.pokemons = await Future.wait(pokemons
         .map((pokemon) async => await fetchPokemonDetails(
             "https://pokeapi.co/api/v2/pokemon/$pokemon", true))
         .toList());
+    return evolutionChain;
   }
 }

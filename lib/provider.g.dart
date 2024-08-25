@@ -169,7 +169,7 @@ class _PokemonByIdProviderElement
   String get id => (origin as PokemonByIdProvider).id;
 }
 
-String _$evolutionChainHash() => r'008a287bfd6144311b1f33f47ca5849c56e7c106';
+String _$evolutionChainHash() => r'3924e47f35c692ce516c2cfea7915c58731e89d3';
 
 /// See also [evolutionChain].
 @ProviderFor(evolutionChain)

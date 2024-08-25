@@ -1,4 +1,4 @@
-import 'package:pokedex_app/widgets/pokemon_details/detailed_options/forms.dart';
+import 'package:pokedex_app/widgets/pokemon_details/detailed_options/forms/forms.dart';
 import 'package:pokedex_app/widgets/pokemon_details/detailed_options/temp_option.dart';
 
 import 'consts.dart';

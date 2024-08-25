@@ -18,6 +18,5 @@ Future<Pokemon?> pokemonById(PokemonByIdRef ref, String id) async {
 
 @riverpod
 Future<EvolutionChain?> evolutionChain(EvolutionChainRef ref, String pokemonId) async {
-  final pokemons = await PokeApi.fetchEvolutionPath(pokemonId);
-  return EvolutionChain(pokemons: pokemons);
+  return await PokeApi.fetchEvolutionPath(pokemonId);
 }

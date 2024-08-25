@@ -14,4 +14,6 @@ const STATS_OPTION = 'Stats';
 const WEAKNESS_OPTION = 'Weakness';
 const STRENGTH_OPTION = 'Strength';
 
+const EVOLUTION_FORM = 'Evolution Form';
+
 List<DetailsOption> POKEMON_DETAILS_OPTIONS = getPokemonDetailsOptions(null);
