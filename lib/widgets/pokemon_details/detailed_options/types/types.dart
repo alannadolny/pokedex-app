@@ -24,7 +24,8 @@ class Types extends ConsumerWidget {
         TypeItem(
           elementTitle: title,
           pokemonType: pokemonTypes.first,
-        )
+        ),
+        const Divider(),
       ];
     }
 
@@ -32,11 +33,6 @@ class Types extends ConsumerWidget {
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.only(
-              top: 10,
-            ),
-          ),
           Text(
             '$title: ',
             style: const TextStyle(
@@ -44,12 +40,15 @@ class Types extends ConsumerWidget {
               fontSize: 18,
             ),
           ),
-          ...pokemonTypes.map((type) => Padding(
-                padding: const EdgeInsets.only(
-                  left: 20,
-                ),
-                child: TypeItem(pokemonType: type),
-              ))
+          ...pokemonTypes.map(
+            (type) => Padding(
+              padding: const EdgeInsets.only(
+                left: 20,
+              ),
+              child: TypeItem(pokemonType: type),
+            ),
+          ),
+          const Divider(),
         ],
       )
     ];
@@ -61,7 +60,7 @@ class Types extends ConsumerWidget {
     return pokemonType.isLoading
         ? const LoadingIndicator()
         : SizedBox(
-            height: 299,
+            height: MediaQuery.of(context).size.height * 0.3,
             child: ListView(
               children: [
                 ...mapPokemonTypesToItems([pokemonType.value!], 'Pokemon type'),

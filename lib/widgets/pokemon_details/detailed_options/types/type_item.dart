@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:pokedex_app/models/pokemon_type.dart';
 
 class TypeItem extends StatelessWidget {
-  String? elementTitle;
-  PokemonType pokemonType;
+  final String? elementTitle;
+  final PokemonType pokemonType;
 
-  TypeItem({
+  const TypeItem({
     required this.pokemonType,
     this.elementTitle,
     super.key,
@@ -19,13 +19,13 @@ class TypeItem extends StatelessWidget {
           '$elementTitle: ',
           style: const TextStyle(
             fontWeight: FontWeight.w600,
-            fontSize: 18,
+            fontSize: 16,
           ),
         ) : const SizedBox.shrink(),
         Text(
           pokemonType.displayType,
           style: const TextStyle(
-            fontSize: 18,
+            fontSize: 14,
           ),
         ),
         const SizedBox(

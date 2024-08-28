@@ -14,4 +14,10 @@ const STATS_OPTION = 'Stats';
 
 const EVOLUTION_FORM = 'Evolution Form';
 
+const HEIGHT_DESCRIPTION = 'The height of this Pokémon in decimetres.';
+const WEIGHT_DESCRIPTION = 'The weight of this Pokémon in hectograms.';
+const ORDER_DESCRIPTION = 'Order for sorting. Almost national order, except families are grouped together.';
+const BASE_EXPERIENCE_DESCRIPTION = 'The base experience gained for defeating this Pokémon.';
+const IS_DEFAULT_DESCRIPTION = 'Set for exactly one Pokémon used as the default for each species.';
+
 List<DetailsOption> POKEMON_DETAILS_OPTIONS = getPokemonDetailsOptions(null);
