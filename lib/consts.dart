@@ -9,10 +9,8 @@ const DEFAULT_GRAY = Color.fromRGBO(146, 147, 168, 1);
 
 const FORMS_OPTION = 'Forms';
 const DETAILS_OPTION = 'Details';
-const TYPES_OPTION = 'Types';
+const DAMAGE_RELATIONS_OPTION = 'Damage relations';
 const STATS_OPTION = 'Stats';
-const WEAKNESS_OPTION = 'Weakness';
-const STRENGTH_OPTION = 'Strength';
 
 const EVOLUTION_FORM = 'Evolution Form';
 

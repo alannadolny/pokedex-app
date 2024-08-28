@@ -298,5 +298,130 @@ class _EvolutionChainProviderElement
   @override
   String get pokemonId => (origin as EvolutionChainProvider).pokemonId;
 }
+
+String _$typeHash() => r'2204a202902ed3604c8e2dce81b908636b95ec83';
+
+/// See also [type].
+@ProviderFor(type)
+const typeProvider = TypeFamily();
+
+/// See also [type].
+class TypeFamily extends Family<AsyncValue<PokemonType?>> {
+  /// See also [type].
+  const TypeFamily();
+
+  /// See also [type].
+  TypeProvider call(
+    String pokemonId,
+  ) {
+    return TypeProvider(
+      pokemonId,
+    );
+  }
+
+  @override
+  TypeProvider getProviderOverride(
+    covariant TypeProvider provider,
+  ) {
+    return call(
+      provider.pokemonId,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'typeProvider';
+}
+
+/// See also [type].
+class TypeProvider extends AutoDisposeFutureProvider<PokemonType?> {
+  /// See also [type].
+  TypeProvider(
+    String pokemonId,
+  ) : this._internal(
+          (ref) => type(
+            ref as TypeRef,
+            pokemonId,
+          ),
+          from: typeProvider,
+          name: r'typeProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product') ? null : _$typeHash,
+          dependencies: TypeFamily._dependencies,
+          allTransitiveDependencies: TypeFamily._allTransitiveDependencies,
+          pokemonId: pokemonId,
+        );
+
+  TypeProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.pokemonId,
+  }) : super.internal();
+
+  final String pokemonId;
+
+  @override
+  Override overrideWith(
+    FutureOr<PokemonType?> Function(TypeRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: TypeProvider._internal(
+        (ref) => create(ref as TypeRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        pokemonId: pokemonId,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<PokemonType?> createElement() {
+    return _TypeProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is TypeProvider && other.pokemonId == pokemonId;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, pokemonId.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin TypeRef on AutoDisposeFutureProviderRef<PokemonType?> {
+  /// The parameter `pokemonId` of this provider.
+  String get pokemonId;
+}
+
+class _TypeProviderElement
+    extends AutoDisposeFutureProviderElement<PokemonType?> with TypeRef {
+  _TypeProviderElement(super.provider);
+
+  @override
+  String get pokemonId => (origin as TypeProvider).pokemonId;
+}
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

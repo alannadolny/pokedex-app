@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:pokedex_app/models/evolution_chain.dart';
 import 'package:pokedex_app/models/pokemon.dart';
+import 'package:pokedex_app/models/pokemon_type.dart';
 import 'package:pokedex_app/services/color_palette_api.dart';
 
 class PokeApi {
@@ -95,5 +96,16 @@ class PokeApi {
             "https://pokeapi.co/api/v2/pokemon/$pokemon", true))
         .toList());
     return evolutionChain;
+  }
+
+  static Future<PokemonType> fetchPokemonType(String pokemonId) async {
+    final response =
+        await http.get(Uri.parse('https://pokeapi.co/api/v2/type/$pokemonId'));
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to fetch pokemon type');
+    }
+
+    return PokemonType.fromJson(json.decode(response.body));
   }
 }

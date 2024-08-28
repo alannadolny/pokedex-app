@@ -1,4 +1,5 @@
 import 'package:pokedex_app/models/pokemon.dart';
+import 'package:pokedex_app/models/pokemon_type.dart';
 import 'models/evolution_chain.dart';
 import 'package:pokedex_app/services/poke_api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -19,4 +20,9 @@ Future<Pokemon?> pokemonById(PokemonByIdRef ref, String id) async {
 @riverpod
 Future<EvolutionChain?> evolutionChain(EvolutionChainRef ref, String pokemonId) async {
   return await PokeApi.fetchEvolutionPath(pokemonId);
+}
+
+@riverpod
+Future<PokemonType?> type(TypeRef ref, String pokemonId) async {
+  return await PokeApi.fetchPokemonType(pokemonId);
 }
