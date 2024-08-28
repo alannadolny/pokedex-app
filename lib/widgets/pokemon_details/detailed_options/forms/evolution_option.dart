@@ -23,6 +23,12 @@ class EvolutionOption extends StatelessWidget {
     };
   }
 
+  double getOptionSize(BuildContext context) {
+    return (MediaQuery.of(context).size.width / pokemonsCount) - (
+    pokemonsCount == 2 ? 50 : 35
+    );
+  }
+  
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -40,7 +46,7 @@ class EvolutionOption extends StatelessWidget {
             ),
             color: pokemon.colorPalette?.dominantColor?.color,
           ),
-          width: (MediaQuery.of(context).size.width / pokemonsCount) - 34,
+          width: getOptionSize(context),
           child: Image.network(pokemon.officialArtworkImage!),
         ),
       )

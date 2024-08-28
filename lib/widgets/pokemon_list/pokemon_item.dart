@@ -36,7 +36,7 @@ class _PokemonItemState extends State<PokemonItem> {
           ),
           color: widget.pokemon.colorPalette?.dominantColor?.color,
         ),
-        width: 190,
+        width: MediaQuery.of(context).size.width / 2 - 30,
         height: 280,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,

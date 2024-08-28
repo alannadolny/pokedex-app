@@ -66,7 +66,7 @@ class _PokemonDetailsState extends ConsumerState<PokemonDetails> {
                     ),
                     child: Image.network(
                       pokemon.value!.officialArtworkImage!,
-                      height: 350,
+                      height: MediaQuery.of(context).size.height * 0.29,
                     ),
                   ),
                   OptionsList(
