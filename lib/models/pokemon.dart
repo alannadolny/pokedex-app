@@ -1,4 +1,6 @@
 import 'package:palette_generator/palette_generator.dart';
+import 'package:pokedex_app/models/pokemon_stats.dart';
+import 'package:pokedex_app/utils.dart';
 
 class Pokemon {
   int? id;
@@ -12,6 +14,7 @@ class Pokemon {
   int? baseExperience;
   bool? isDefault;
   String? generation;
+  List<PokemonStats>? pokemonStats = [];
 
   Pokemon({
     required this.name,
@@ -23,6 +26,7 @@ class Pokemon {
     this.baseExperience,
     this.order,
     this.isDefault,
+    this.pokemonStats,
   });
 
   String get displayId {
@@ -30,7 +34,15 @@ class Pokemon {
   }
 
   String get displayName {
-    return name[0].toUpperCase() + name.substring(1).toLowerCase();
+    return capitalize(name);
+  }
+
+  static List<PokemonStats>? mapJsonToPokemonStats(List<dynamic>? json) {
+    if (json == null) {
+      return [];
+    }
+
+    return json.map((stat) => PokemonStats.fromJson(stat)).toList();
   }
 
   factory Pokemon.fromJson(Map<String, dynamic> json) {
@@ -43,6 +55,7 @@ class Pokemon {
       order: json['order'],
       baseExperience: json['base_experience'],
       isDefault: json['is_default'],
+      pokemonStats: mapJsonToPokemonStats(json['stats']),
       officialArtworkImage: json['sprites']?['other']?['official-artwork']
           ?['front_default'],
     );

@@ -10,7 +10,7 @@ import 'package:pokedex_app/widgets/pokemon_details/options_list.dart';
 
 class PokemonDetails extends ConsumerStatefulWidget {
   final String? id;
-  int currentOption = 1;
+  int currentOption = 3;
 
   PokemonDetails({
     this.id,

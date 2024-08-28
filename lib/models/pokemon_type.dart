@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex_app/utils.dart';
 
 class PokemonType {
   int? id;
@@ -40,8 +41,7 @@ class PokemonType {
   }
 
   factory PokemonType.fromJson(Map<String, dynamic> json) {
-    String typeName = json['name'] != null ?
-        json['name'][0].toUpperCase() + json['name'].substring(1).toLowerCase() : null;
+    String? typeName = json['name'] != null ? capitalize(json['name']) : null;
     return PokemonType(
       id: json['id'],
       type: json['name'],
