@@ -24,6 +24,10 @@ class EvolutionOption extends StatelessWidget {
   }
 
   double getOptionSize(BuildContext context) {
+    if (pokemonsCount == 1) {
+      return MediaQuery.of(context).size.width / 4;
+    }
+
     return (MediaQuery.of(context).size.width / pokemonsCount) - (
     pokemonsCount == 2 ? 50 : 35
     );

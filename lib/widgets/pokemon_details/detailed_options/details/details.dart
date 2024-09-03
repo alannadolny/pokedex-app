@@ -20,7 +20,7 @@ class Details extends ConsumerWidget {
     return pokemon.isLoading
         ? const LoadingIndicator()
         : SizedBox(
-            height: MediaQuery.of(context).size.height * 0.37,
+            height: MediaQuery.of(context).size.height * 0.3,
             child: ListView(
               padding: EdgeInsets.zero,
               children: [

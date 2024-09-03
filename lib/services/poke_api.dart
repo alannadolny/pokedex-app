@@ -102,6 +102,7 @@ class PokeApi {
     final response =
         await http.get(Uri.parse('https://pokeapi.co/api/v2/type/$pokemonId'));
 
+    print(pokemonId);
     if (response.statusCode != 200) {
       throw Exception('Failed to fetch pokemon type');
     }
