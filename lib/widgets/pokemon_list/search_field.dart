@@ -1,29 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_app/consts.dart';
+import 'package:pokedex_app/models/debouncer.dart';
 
-class SearchField extends StatefulWidget {
-  String? placeholder;
+class SearchField extends StatelessWidget {
+  final String? placeholder;
+  final Function onTextEnter;
+  final Debouncer debouncer;
 
   SearchField({
-    super.key,
+    required this.onTextEnter,
     this.placeholder,
-  });
+    super.key,
+  }) : debouncer = Debouncer(milliseconds: 1000);
 
-  @override
-  State<SearchField> createState() {
-    return _SearchFieldState();
-  }
-}
-
-class _SearchFieldState extends State<SearchField> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: (value) {
+        debouncer.run(() {
+          onTextEnter(value);
+        });
+      },
       decoration: InputDecoration(
         prefixIcon: const Icon(Icons.search),
         filled: true,
         fillColor: DEFAULT_LIGHT_COLOR,
-        hintText: widget.placeholder,
+        hintText: placeholder,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: const BorderSide(

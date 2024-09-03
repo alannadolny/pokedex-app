@@ -38,8 +38,8 @@ class PokeApi {
     return pokemon;
   }
 
-  static Future<List<Pokemon>> fetchPokemonsWithDetails() async {
-    final List<Pokemon> pokemonsList = await fetchPokemons();
+  static Future<List<Pokemon>> fetchPokemonsWithDetails(List<Pokemon>? pokemons) async {
+    final List<Pokemon> pokemonsList = pokemons ?? await fetchPokemons();
     List<Future<Pokemon>> pokemonsWithDetails = pokemonsList
         .map((pokemon) => fetchPokemonDetails(pokemon.url!, true))
         .toList();
@@ -107,5 +107,20 @@ class PokeApi {
     }
 
     return PokemonType.fromJson(json.decode(response.body));
+  }
+
+  static Future<List<Pokemon>> fetchAllPokemonsName() async {
+    final response = await http
+        .get(Uri.parse("https://pokeapi.co/api/v2/pokemon/?limit=-1"));
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to fetch pokemons');
+    }
+
+    List<dynamic> pokemonsData = json.decode(response.body)['results'];
+
+    return pokemonsData
+        .map((pokemonData) => Pokemon.fromJson(pokemonData))
+        .toList();
   }
 }

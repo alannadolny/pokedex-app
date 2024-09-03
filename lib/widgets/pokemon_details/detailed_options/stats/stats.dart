@@ -30,8 +30,9 @@ class Stats extends ConsumerWidget {
     return pokemon.isLoading
         ? const LoadingIndicator()
         : SizedBox(
-            height: MediaQuery.of(context).size.height * 0.3,
+            height: MediaQuery.of(context).size.height * 0.37,
             child: ListView(
+              padding: EdgeInsets.zero,
               children: mapStatsToInfoBoxes(pokemon.value!.pokemonStats!),
             ),
           );

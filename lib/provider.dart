@@ -1,3 +1,4 @@
+import 'package:pokedex_app/models/filters.dart';
 import 'package:pokedex_app/models/pokemon.dart';
 import 'package:pokedex_app/models/pokemon_type.dart';
 import 'models/evolution_chain.dart';
@@ -7,13 +8,15 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'provider.g.dart';
 
 @riverpod
-Future<List<Pokemon>> pokemon(PokemonRef ref) async {
-  return await PokeApi.fetchPokemonsWithDetails();
+Future<List<Pokemon>> pokemon(PokemonRef ref, String? term) async {
+  Filters filters = Filters(allPokemonsName: [], term: term);
+  filters.allPokemonsName = await PokeApi.fetchAllPokemonsName();
+  return await PokeApi.fetchPokemonsWithDetails(filters.getFilteredPokemonsList());
 }
 
 @riverpod
 Future<Pokemon?> pokemonById(PokemonByIdRef ref, String id) async {
-  final pokemons = ref.watch(pokemonProvider);
+  final pokemons = ref.watch(pokemonProvider(null));
   return pokemons.value?.firstWhere((p) => p.id.toString() == id);
 }
 

@@ -37,13 +37,13 @@ class Types extends ConsumerWidget {
             '$title: ',
             style: const TextStyle(
               fontWeight: FontWeight.w600,
-              fontSize: 18,
+              fontSize: 16,
             ),
           ),
           ...pokemonTypes.map(
             (type) => Padding(
               padding: const EdgeInsets.only(
-                left: 20,
+                left: 14,
               ),
               child: TypeItem(pokemonType: type),
             ),
@@ -60,8 +60,9 @@ class Types extends ConsumerWidget {
     return pokemonType.isLoading
         ? const LoadingIndicator()
         : SizedBox(
-            height: MediaQuery.of(context).size.height * 0.3,
+            height: MediaQuery.of(context).size.height * 0.37,
             child: ListView(
+              padding: EdgeInsets.zero,
               children: [
                 ...mapPokemonTypesToItems([pokemonType.value!], 'Pokemon type'),
                 ...mapPokemonTypesToItems(

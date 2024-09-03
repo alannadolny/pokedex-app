@@ -3,7 +3,10 @@ import 'package:pokedex_app/widgets/pokemon_list/search_field.dart';
 import 'package:pokedex_app/widgets/pokemon_list/filters_button.dart';
 
 class ListHeader extends StatelessWidget {
+  final Function onTextEnter;
+
   const ListHeader({
+    required this.onTextEnter,
     super.key,
   });
 
@@ -33,10 +36,11 @@ class ListHeader extends StatelessWidget {
             children: [
               Expanded(
                 child: SearchField(
+                  onTextEnter: onTextEnter,
                   placeholder: "Name or number",
                 ),
               ),
-              FiltersButton(),
+              const FiltersButton(),
             ],
           ),
           const SizedBox(
