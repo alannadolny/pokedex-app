@@ -22,11 +22,14 @@ class Filters {
     switch (sortOrder) {
       case NAME_ASC:
         allPokemonsName.sort((a, b) => a.name.compareTo(b.name));
+        break;
       case NAME_DESC:
         allPokemonsName.sort((b, a) => a.name.compareTo(b.name));
+        break;
       case POKEDEX_NUM_DESC:
         allPokemonsName.sort((b, a) => a.id!.compareTo(b.id!));
-      case _:
+        break;
+      default:
         allPokemonsName.sort((a, b) => a.id!.compareTo(b.id!));
     }
   }
@@ -34,7 +37,7 @@ class Filters {
   List<Pokemon> getFilteredPokemonsList() {
     sortPokemons();
     if (term == null) {
-      return allPokemonsName.take(40).toList();
+      return allPokemonsName.take(20).toList();
     }
 
     return allPokemonsName
