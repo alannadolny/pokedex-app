@@ -38,7 +38,8 @@ class PokeApi {
     return pokemon;
   }
 
-  static Future<List<Pokemon>> fetchPokemonsWithDetails(List<Pokemon>? pokemons) async {
+  static Future<List<Pokemon>> fetchPokemonsWithDetails(
+      List<Pokemon>? pokemons) async {
     final List<Pokemon> pokemonsList = pokemons ?? await fetchPokemons();
     List<Future<Pokemon>> pokemonsWithDetails = pokemonsList
         .map((pokemon) => fetchPokemonDetails(pokemon.url!, true))
@@ -102,7 +103,6 @@ class PokeApi {
     final response =
         await http.get(Uri.parse('https://pokeapi.co/api/v2/type/$pokemonId'));
 
-    print(pokemonId);
     if (response.statusCode != 200) {
       throw Exception('Failed to fetch pokemon type');
     }

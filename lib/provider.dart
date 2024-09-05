@@ -17,11 +17,20 @@ class FilterNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
+  void updateSortOrder(String order) {
+    filters.sortOrder = order;
+    notifyListeners();
+  }
+
   void initialFetch() {
     if (filters.allPokemonsName.isEmpty) {
       filters.initFilters();
       notifyListeners();
     }
+  }
+
+  bool isCurrentSortOrder(String order) {
+    return order == filters.sortOrder;
   }
 }
 

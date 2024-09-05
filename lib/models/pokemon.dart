@@ -47,7 +47,7 @@ class Pokemon {
 
   factory Pokemon.fromJson(Map<String, dynamic> json) {
     return Pokemon(
-      id: json['id'],
+      id: json['id'] ?? int.parse(json['url'].toString().split('/')[6]),
       name: json['name'],
       url: json['url'],
       height: json['height'],

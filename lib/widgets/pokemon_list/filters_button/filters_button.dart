@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex_app/widgets/pokemon_list/filters_button/filters.dart';
 
-class FiltersButton extends StatefulWidget {
+class FiltersButton extends StatelessWidget {
   const FiltersButton({
     super.key,
   });
 
-  @override
-  State<FiltersButton> createState() {
-    return _FilterButton();
+  Null Function() openFiltersModal(BuildContext context) {
+    return () {
+      showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        builder: (ctx) => const Filters(),
+      );
+    };
   }
-}
 
-class _FilterButton extends State<FiltersButton> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,7 +26,7 @@ class _FilterButton extends State<FiltersButton> {
         height: 63,
         width: 70,
         child: IconButton.filled(
-          onPressed: () {},
+          onPressed: openFiltersModal(context),
           style: ButtonStyle(
             shape: MaterialStateProperty.all(
               RoundedRectangleBorder(

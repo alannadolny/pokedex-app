@@ -20,4 +20,16 @@ const ORDER_DESCRIPTION = 'Order for sorting. Almost national order, except fami
 const BASE_EXPERIENCE_DESCRIPTION = 'The base experience gained for defeating this Pokémon.';
 const IS_DEFAULT_DESCRIPTION = 'Set for exactly one Pokémon used as the default for each species.';
 
+const NAME_ASC = 'NAME_ASC';
+const NAME_DESC = 'NAME_DESC';
+const POKEDEX_NUM_ASC = 'POKEDEX_NUM_ASC';
+const POKEDEX_NUM_DESC = 'POKEDEX_NUM_DESC';
+
+const ORDERING_OPTIONS = {
+  NAME_ASC: 'Name (ascending)',
+  NAME_DESC: 'Name (descending)',
+  POKEDEX_NUM_ASC: 'Pokedex number (ascending)',
+  POKEDEX_NUM_DESC: 'Pokedex number (descending)',
+};
+
 List<DetailsOption> POKEMON_DETAILS_OPTIONS = getPokemonDetailsOptions(null);
