@@ -3,13 +3,13 @@ import 'package:pokedex_app/models/pokemon.dart';
 import 'package:pokedex_app/widgets/pokemon_list/pokemon_item.dart';
 
 class PokemonRow extends StatelessWidget {
-  final Pokemon pokemonLeft;
-  final Pokemon pokemonRight;
+  final Pokemon? pokemonLeft;
+  final Pokemon? pokemonRight;
 
   const PokemonRow({
     super.key,
-    required this.pokemonLeft,
-    required this.pokemonRight,
+    this.pokemonLeft,
+    this.pokemonRight,
   });
 
   @override
@@ -17,10 +17,19 @@ class PokemonRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        PokemonItem(pokemon: pokemonLeft),
-        PokemonItem(pokemon: pokemonRight),
+        pokemonLeft != null
+            ? PokemonItem(
+                pokemon: pokemonLeft!,
+              )
+            : const SizedBox.shrink(),
+        pokemonRight != null
+            ? PokemonItem(
+                pokemon: pokemonRight!,
+              )
+            : SizedBox(
+                width: MediaQuery.of(context).size.width / 2 - 30,
+              ),
       ],
     );
   }
-
 }
