@@ -18,3 +18,11 @@ List<DetailsOption> getPokemonDetailsOptions(String? pokemonId) {
 String capitalize(String text) {
   return text[0].toUpperCase() + text.substring(1).toLowerCase();
 }
+
+List<dynamic> takeLast(List<dynamic> list, int n) {
+  return list.reversed.take(n).toList().reversed.toList();
+}
+
+bool hasIndex(List<dynamic> list, int index) {
+  return list.asMap().containsKey(index);
+}
