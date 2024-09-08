@@ -26,7 +26,7 @@ class PokemonList extends ConsumerWidget {
     });
 
     Widget buildPokemonsList(BuildContext context, Pokemon item, int idx) {
-      if (idx % 2 == 0) {
+      if (idx % 2 == 0 && pagingController.getPokemonsList()!.length > 1) {
         return const SizedBox.shrink();
       }
 

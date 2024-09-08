@@ -49,7 +49,9 @@ final filterProvider = ChangeNotifierProvider((ref) => FilterNotifier());
 class PagingNotifier extends ChangeNotifier {
   int pageKey = DEFAULT_PAGE_KEY;
   bool fetchingFinished = false;
-  final PagingController<int, Pokemon> pagingController = PagingController(firstPageKey: 1);
+  final PagingController<int, Pokemon> pagingController = PagingController(
+    firstPageKey: 1,
+  );
 
   void appendPokemons(List<Pokemon> pokemons) {
     fetchingFinished = true;
@@ -62,8 +64,7 @@ class PagingNotifier extends ChangeNotifier {
   }
 
   bool isLoaded() {
-    return pagingController.itemList != null
-          && fetchingFinished;
+    return pagingController.itemList != null && fetchingFinished;
   }
 
   List<Pokemon>? getPokemonsList() {
@@ -104,9 +105,8 @@ Future<List<Pokemon>> pokemon(PokemonRef ref) async {
   final filters = ref.watch(filterProvider);
   final pagingController = ref.watch(pagingProvider);
   filters.updatePageKey(pagingController.pageKey);
-  final pokemons = await PokeApi.fetchPokemonsWithDetails(
-      filters.getPokemonList()
-  );
+  final pokemons =
+      await PokeApi.fetchPokemonsWithDetails(filters.getPokemonList());
   pagingController.appendPokemons(pokemons);
   return pokemons;
 }
@@ -118,7 +118,8 @@ Future<Pokemon?> pokemonById(PokemonByIdRef ref, String id) async {
 }
 
 @riverpod
-Future<EvolutionChain?> evolutionChain(EvolutionChainRef ref, String pokemonId) async {
+Future<EvolutionChain?> evolutionChain(
+    EvolutionChainRef ref, String pokemonId) async {
   return await PokeApi.fetchEvolutionPath(pokemonId);
 }
 
