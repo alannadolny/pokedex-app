@@ -32,4 +32,7 @@ const ORDERING_OPTIONS = {
   POKEDEX_NUM_DESC: 'Pokedex number (descending)',
 };
 
+const MAX_PAGE_SIZE = 10;
+const DEFAULT_PAGE_KEY = 1;
+
 List<DetailsOption> POKEMON_DETAILS_OPTIONS = getPokemonDetailsOptions(null);
