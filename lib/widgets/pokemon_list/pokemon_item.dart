@@ -2,30 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pokedex_app/models/pokemon.dart';
 
-class PokemonItem extends StatefulWidget {
+class PokemonItem extends StatelessWidget {
   final Pokemon pokemon;
 
   const PokemonItem({
-    super.key,
     required this.pokemon,
+    super.key,
   });
 
   @override
-  State<PokemonItem> createState() {
-    return _PokemonItemState();
-  }
-}
-
-class _PokemonItemState extends State<PokemonItem> {
-  void onPokemonTap() {
-    context.goNamed(
-      'pokemonDetails',
-      pathParameters: {'id': "${widget.pokemon.id}" },
-    );
-  }
-
-  @override
   Widget build(BuildContext context) {
+    void onPokemonTap() {
+      context.goNamed(
+        'pokemonDetails',
+        pathParameters: {'id': "${pokemon.id}"},
+      );
+    }
+
     return GestureDetector(
       onTap: onPokemonTap,
       child: Container(
@@ -34,9 +27,12 @@ class _PokemonItemState extends State<PokemonItem> {
           borderRadius: const BorderRadius.all(
             Radius.circular(20),
           ),
-          color: widget.pokemon.colorPalette?.dominantColor?.color,
+          color: pokemon.colorPalette?.dominantColor?.color,
         ),
-        width: MediaQuery.of(context).size.width / 2 - 30,
+        width: MediaQuery
+            .of(context)
+            .size
+            .width / 2 - 30,
         height: 280,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -45,18 +41,18 @@ class _PokemonItemState extends State<PokemonItem> {
               height: 10,
             ),
             Image.network(
-              widget.pokemon.officialArtworkImage!,
+              pokemon.officialArtworkImage!,
               height: 150,
             ),
             Column(
               children: [
                 Text(
-                  widget.pokemon.displayName,
+                  pokemon.displayName,
                   style: const TextStyle(
                       fontWeight: FontWeight.bold, fontSize: 25),
                 ),
                 Text(
-                  widget.pokemon.displayId,
+                  pokemon.displayId,
                   style: const TextStyle(
                       fontWeight: FontWeight.w400, fontSize: 20),
                 ),

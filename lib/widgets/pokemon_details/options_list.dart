@@ -3,9 +3,9 @@ import 'package:pokedex_app/consts.dart';
 
 class OptionsList extends StatelessWidget {
   final int activeOption;
-  Function onOptionClick;
+  final Function onOptionClick;
 
-  OptionsList({
+  const OptionsList({
     required this.activeOption,
     required this.onOptionClick,
     super.key,

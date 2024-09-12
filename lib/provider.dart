@@ -8,7 +8,6 @@ import 'package:pokedex_app/models/pokemon_type.dart';
 import 'models/evolution_chain.dart';
 import 'package:pokedex_app/services/poke_api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:collection/collection.dart';
 
 part 'provider.g.dart';
 
@@ -50,6 +49,7 @@ final filterProvider = ChangeNotifierProvider((ref) => FilterNotifier());
 class PagingNotifier extends ChangeNotifier {
   int pageKey = DEFAULT_PAGE_KEY;
   bool fetchingFinished = false;
+  String sortOrder = POKEDEX_NUM_ASC;
   final PagingController<int, Pokemon> pagingController = PagingController(
     firstPageKey: 1,
   );
@@ -69,6 +69,7 @@ class PagingNotifier extends ChangeNotifier {
   }
 
   List<Pokemon>? getPokemonsList() {
+    Filters.sortPokemons(sortOrder, pagingController.itemList ?? []);
     return pagingController.itemList ?? [];
   }
 
@@ -110,6 +111,7 @@ final pagingProvider = ChangeNotifierProvider((ref) => PagingNotifier());
 Future<List<Pokemon>> pokemon(PokemonRef ref) async {
   final filters = ref.watch(filterProvider);
   final pagingController = ref.watch(pagingProvider);
+  pagingController.sortOrder = filters.filters.sortOrder;
   filters.updatePageKey(pagingController.pageKey);
   final pokemons =
       await PokeApi.fetchPokemonsWithDetails(filters.getPokemonList());

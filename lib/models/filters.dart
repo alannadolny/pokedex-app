@@ -25,19 +25,19 @@ class Filters {
     allPokemonsName = await PokeApi.fetchAllPokemonsName();
   }
 
-  void sortPokemons() {
+  static void sortPokemons(String sortOrder, List<Pokemon> pokemons) {
     switch (sortOrder) {
       case NAME_ASC:
-        allPokemonsName.sort((a, b) => a.name.compareTo(b.name));
+        pokemons.sort((a, b) => a.name.compareTo(b.name));
         break;
       case NAME_DESC:
-        allPokemonsName.sort((b, a) => a.name.compareTo(b.name));
+        pokemons.sort((b, a) => a.name.compareTo(b.name));
         break;
       case POKEDEX_NUM_DESC:
-        allPokemonsName.sort((b, a) => a.id!.compareTo(b.id!));
+        pokemons.sort((b, a) => a.id!.compareTo(b.id!));
         break;
       default:
-        allPokemonsName.sort((a, b) => a.id!.compareTo(b.id!));
+        pokemons.sort((a, b) => a.id!.compareTo(b.id!));
     }
   }
 
@@ -45,7 +45,7 @@ class Filters {
     (int, int) pokemonsRange =
         ((pageKey - 1) * defaultPageSize, pageKey * defaultPageSize);
 
-    sortPokemons();
+    sortPokemons(sortOrder, allPokemonsName);
     if (term == null) {
       return allPokemonsName
           .getRange(pokemonsRange.$1, pokemonsRange.$2)

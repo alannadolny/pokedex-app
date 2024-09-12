@@ -7,9 +7,9 @@ import 'package:pokedex_app/widgets/loading_indicator.dart';
 import 'package:pokedex_app/widgets/pokemon_details/detailed_options/details/info_box.dart';
 
 class Details extends ConsumerWidget {
-  String? id;
+  final String? id;
 
-  Details({
+  const Details({
     this.id,
     super.key,
   });

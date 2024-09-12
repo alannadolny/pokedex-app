@@ -6,9 +6,9 @@ import 'package:pokedex_app/widgets/loading_indicator.dart';
 import 'package:pokedex_app/widgets/pokemon_details/detailed_options/types/type_item.dart';
 
 class Types extends ConsumerWidget {
-  String? id;
+  final String? id;
 
-  Types({
+  const Types({
     this.id,
     super.key,
   });
