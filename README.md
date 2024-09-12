@@ -10,9 +10,12 @@
 
 ## General Information
 
-The Pokedex application is based on data provided by [PokeApi](https://pokeapi.co/). The main idea of this project was to learn some basics of flutter with dart, including state management, routing, etc.
-<img alt="readme_1.gif" height="300px" src="img%2Freadme_1.gif"/>
-<img alt="readme_2.gif" height="300px" src="img%2Freadme_2.gif"/>
+The Pokedex application is based on data provided by [PokeApi](https://pokeapi.co/). The main idea of this project was to learn some basics of flutter with dart, including state management, routing, etc.<br />
+<p align="center">
+  <img alt="readme_1.gif" height="300px" src="img%2Freadme_1.gif"/>
+  <img alt="readme_2.gif" height="300px" src="img%2Freadme_2.gif"/>
+</p>
+
 
 ## Technologies \ Libraries Used
 
