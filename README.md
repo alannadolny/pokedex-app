@@ -1,16 +1,47 @@
-# pokedex_app
+# POKEDEX
 
-A new Flutter project.
+## Table of Contents
 
-## Getting Started
+- [General Info](#general-information)
+- [Technologies \ Libraries Used](#technologies--libraries-used)
+- [Features](#features)
+- [Setup](#setup)
+- [Project Status](#project-status)
 
-This project is a starting point for a Flutter application.
+## General Information
 
-A few resources to get you started if this is your first Flutter project:
+The Pokedex application based on data provided by [PokeApi](https://pokeapi.co/). The main idea of this project was to learn some basics of flutter with dart, including state management, routing, etc.
+[Nagranie ekranu z 2024-09-13 00-57-48.webm](..%2F..%2FWideo%2FNagrania%20ekranu%2FNagranie%20ekranu%20z%202024-09-13%2000-57-48.webm)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Technologies \ Libraries Used
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+The application was build using Flutter with Dart.
+Libraries used:
+- http
+- go_router
+- riverpod (flutter_riverpod, riverpod_annotation, riverpod_generator)
+- infinite_scroll_pagination
+- build_runner
+
+## Features
+
+- Scrollable list of pokemons (Data is loaded dynamically, 10 pokemons per request)
+- Each pokemon has appropriate background color generated based on dominant color of the pokemon's artwork image
+- List of pokemons is sortable and filterable
+- Each pokemon has it's detailed view
+- In detailed view there are available previews of evolution chain, description of the pokemon, damage relations and statistics
+
+## Setup
+
+To resolve the dependencies:
+```
+flutter pub get
+```
+To run the app:
+```
+flutter run lib/main.dart
+```
+
+## Project Status
+
+Project is completed (13.09.2024)
