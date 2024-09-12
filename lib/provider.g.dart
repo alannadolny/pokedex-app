@@ -20,7 +20,7 @@ final pokemonProvider = AutoDisposeFutureProvider<List<Pokemon>>.internal(
 );
 
 typedef PokemonRef = AutoDisposeFutureProviderRef<List<Pokemon>>;
-String _$pokemonByIdHash() => r'976b5e66840eed47256ee5d21137a6cbb3be3b0e';
+String _$pokemonByIdHash() => r'b440f79faccaa09c63d51ace62d77b0709efffc2';
 
 /// Copied from Dart SDK
 class _SystemHash {

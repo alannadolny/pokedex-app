@@ -8,6 +8,7 @@ import 'package:pokedex_app/models/pokemon_type.dart';
 import 'models/evolution_chain.dart';
 import 'package:pokedex_app/services/poke_api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:collection/collection.dart';
 
 part 'provider.g.dart';
 
@@ -76,7 +77,12 @@ class PagingNotifier extends ChangeNotifier {
   }
 
   Pokemon? getPokemonById(String id) {
-    return getPokemonsList()?.firstWhere((p) => p.id.toString() == id);
+    int? idx = getPokemonsList()?.indexWhere((p) => p.id.toString() == id);
+    if (idx != null && idx >= 0) {
+      return getPokemonAt(idx);
+    }
+
+    return null;
   }
 
   void initPagingController() {
@@ -112,9 +118,13 @@ Future<List<Pokemon>> pokemon(PokemonRef ref) async {
 }
 
 @riverpod
-Future<Pokemon?> pokemonById(PokemonByIdRef ref, String id) async {
+Future<Pokemon> pokemonById(PokemonByIdRef ref, String id) async {
   final pagingController = ref.watch(pagingProvider);
-  return pagingController.getPokemonById(id);
+  return pagingController.getPokemonById(id) ??
+      await PokeApi.fetchPokemonDetails(
+        'https://pokeapi.co/api/v2/pokemon/$id',
+        true,
+      );
 }
 
 @riverpod
