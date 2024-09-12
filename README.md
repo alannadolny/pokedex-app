@@ -10,12 +10,13 @@
 
 ## General Information
 
-The Pokedex application based on data provided by [PokeApi](https://pokeapi.co/). The main idea of this project was to learn some basics of flutter with dart, including state management, routing, etc.
-[Nagranie ekranu z 2024-09-13 00-57-48.webm](..%2F..%2FWideo%2FNagrania%20ekranu%2FNagranie%20ekranu%20z%202024-09-13%2000-57-48.webm)
+The Pokedex application is based on data provided by [PokeApi](https://pokeapi.co/). The main idea of this project was to learn some basics of flutter with dart, including state management, routing, etc.
+<img alt="readme_1.gif" height="300px" src="img%2Freadme_1.gif"/>
+<img alt="readme_2.gif" height="300px" src="img%2Freadme_2.gif"/>
 
 ## Technologies \ Libraries Used
 
-The application was build using Flutter with Dart.
+The application was built using Flutter with Dart.
 Libraries used:
 - http
 - go_router
@@ -25,8 +26,8 @@ Libraries used:
 
 ## Features
 
-- Scrollable list of pokemons (Data is loaded dynamically, 10 pokemons per request)
-- Each pokemon has appropriate background color generated based on dominant color of the pokemon's artwork image
+- Scrollable list of Pokemon (Data is loaded dynamically, 10 pokemons per request)
+- Each Pokemon has an appropriate background color generated based on dominant color of the Pokemon's artwork image
 - List of pokemons is sortable and filterable
 - Each pokemon has it's detailed view
 - In detailed view there are available previews of evolution chain, description of the pokemon, damage relations and statistics
